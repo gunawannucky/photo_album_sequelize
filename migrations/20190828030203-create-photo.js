@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       filename: {
-        type: Sequelize.STRING
+        type: Sequelize.BLOB
       },
       ContributorId: {
         type: Sequelize.INTEGER

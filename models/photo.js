@@ -5,13 +5,18 @@ module.exports = (sequelize, DataTypes) => {
 
   }
   Photo.init({
-    filename: DataTypes.STRING,
+    filename: DataTypes.BLOB,
     ContributorId: DataTypes.INTEGER
   }, {
     sequelize
   });
   Photo.associate = function(models) {
     // associations can be defined here
+    Photo.belongsTo(models.Contributor, {
+      as: 'Contributor',
+      foreignKey: 'ContributorId',
+      targetKey: 'id'
+    })
   };
   return Photo;
 };

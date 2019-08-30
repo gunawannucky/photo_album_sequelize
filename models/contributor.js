@@ -14,6 +14,11 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     Contributor.belongsTo(models.User, { as: 'User', foreignKey: 'UserId', targetKey: 'id' })
     Contributor.belongsTo(models.Album, { as: 'Album', foreignKey: 'AlbumId', targetKey: 'id' })
+    Contributor.hasMany(models.Photo, {
+      as: 'Photos',
+      foreignKey: 'ContributorId',
+      sourceKey: 'id'
+    })
   };
   return Contributor;
 };

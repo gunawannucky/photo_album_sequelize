@@ -1,8 +1,12 @@
 'use strict';
+const bcrypt = require('bcryptjs');
+
 module.exports = (sequelize, DataTypes) => {
   const Model = sequelize.Sequelize.Model
   class User extends Model {
-
+    validPassword (password) {
+      return bcrypt.compareSync(password, this.password)
+    }
   }
 
   User.init({
@@ -11,14 +15,20 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING
   }, {
       hooks: {
-        beforeCreate: (user) => {
-          const crypto = require('crypto')
-          const salt = 'secret'
-          user['password'] = crypto.createHmac('sha256', salt)
-            .update(user['password'])
-            .digest('hex')
-        }
-      },
+        // beforeCreate: (user) => {
+        //   const crypto = require('crypto')
+        //   const salt = 'secret'
+        //   user['password'] = crypto.createHmac('sha256', salt)
+        //     .update(user['password'])
+        //     .digest('hex')
+        // }
+
+          //bcrypt untuk password
+          beforeCreate: (user) => {
+              const salt = bcrypt.genSaltSync();
+              user.password = bcrypt.hashSync(user.password, salt);
+          }        
+      }, 
       sequelize
   });
   User.associate = function(models) {

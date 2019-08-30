@@ -34,64 +34,47 @@
     <div id="colorlib-page">
         <%- include('../partials/navbar') %>
             <div id="colorlib-main">
+                 <section class="ftco-section bg-light ftco-bread">
+                <div class="container">
+                    <div class="row no-gutters slider-text align-items-center">
+                        <div class="col-md-12 ftco-animate">
+                            <p class="breadcrumbs"><span class="mr-2"><a href="/">Home</a></span> <span>Album</span>
+                            </p>
+                            <h1 class="mb-3 bread"><%= album.name %> 
+                                <% if(isContributor) { %>
+                                <a style="float:right" name="add-photo"
+                                    id="add-photo" class="btn btn-warning" href="/photo/<%= album.id %>/add"
+                                    role="button">Add Photo</a>
+                                <% } %>
+
+                                <% if(album.AdminId === user.UserId) { %>
+                                    <a style="float:right; margin-right: 15px;" name="add-contributor" id="add-contributor" class="btn btn-primary"
+                                        href="/contributor/<%= album.id %>/add" role="button">Add Contributor</a>
+                                    </h1>
+                                <% } %>
+                                
+                            <p><%= album.description %></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
                 <section class="ftco-section-2">
                     <div class="photograhy">
                         <div class="row no-gutters">
-                            <div class="col-md-4 ftco-animate">
-                                <a href="/images/image_1.jpg"
-                                    class="photography-entry img image-popup d-flex justify-content-center align-items-center"
-                                    style="background-image: url(/images/image_1.jpg);">
-                                    <div class="overlay"></div>
-                                    <div class="text text-center">
-                                        <h3>Work 01</h3>
-                                        <span class="tag">Model</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-4 ftco-animate">
-                                <a href="/images/image_2.jpg"
-                                    class="photography-entry img image-popup d-flex justify-content-center align-items-center"
-                                    style="background-image: url(/images/image_2.jpg);">
-                                    <div class="overlay"></div>
-                                    <div class="text text-center">
-                                        <h3>Work 02</h3>
-                                        <span class="tag">Nature</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-4 ftco-animate">
-                                <a href="/images/image_3.jpg"
-                                    class="photography-entry img image-popup d-flex justify-content-center align-items-center"
-                                    style="background-image: url(/images/image_3.jpg);">
-                                    <div class="overlay"></div>
-                                    <div class="text text-center">
-                                        <h3>Work 03</h3>
-                                        <span class="tag">Fashion</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-4 ftco-animate">
-                                <a href="/images/image_4.jpg"
-                                    class="photography-entry img image-popup d-flex justify-content-center align-items-center"
-                                    style="background-image: url(/images/image_4.jpg);">
-                                    <div class="overlay"></div>
-                                    <div class="text text-center">
-                                        <h3>Work 04</h3>
-                                        <span class="tag">Travel</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-4 ftco-animate">
-                                <a href="/images/image_5.jpg"
-                                    class="photography-entry img image-popup d-flex justify-content-center align-items-center"
-                                    style="background-image: url(/images/image_5.jpg);">
-                                    <div class="overlay"></div>
-                                    <div class="text text-center">
-                                        <h3>Work 05</h3>
-                                        <span class="tag">Travel</span>
-                                    </div>
-                                </a>
-                            </div>                            
+                           <% contributors.forEach(c => {
+                               c.Photos.forEach(photo => { 
+                                const img = blob(photo.filename);
+                                %>
+                                <div class="col-md-4 ftco-animate">
+                                    <a href="data:image/png;base64,<%- img %>"
+                                        class="photography-entry img image-popup d-flex justify-content-center align-items-center"
+                                        style="background-image: url(data:image/png;base64,<%-img%>)">
+                                        <div class="overlay"></div>
+                                    </a>
+                                </div>
+                           <%   })
+                           }) %>                           
+                           
                         </div>
                     </div>
                 </section>
