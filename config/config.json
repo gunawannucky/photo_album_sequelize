@@ -1,5 +1,5 @@
 {
-  "development": {
+  "production": {
     "username": "postgres",
     "password": "qq",
     "database": "photo_album",

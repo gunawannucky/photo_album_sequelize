@@ -12,7 +12,7 @@ const {User, Album, Photo, Contributor} = require('./models')
 
 let app = express();
 app.set('view engine', 'ejs');
-const port = 3000;
+const port = process.env.PORT || 4000;
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, 'public')));
 
