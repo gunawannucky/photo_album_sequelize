@@ -1,0 +1,9 @@
+{
+  "production": {
+    "username": "postgres",
+    "password": "qq",
+    "database": "photo_album",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
