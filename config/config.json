@@ -1,9 +1,9 @@
 {
   "production": {
-    "username": "postgres",
-    "password": "qq",
-    "database": "photo_album",
-    "host": "127.0.0.1",
+    "username": "efsszwmvgmyaxs",
+    "password": "3d1e731ae4423fd0be0a69c1a95708a5d45f7e10f5462f578516c73762839edf",
+    "database": "d2f262ac30d4dj",
+    "host": "ec2-54-83-9-36.compute-1.amazonaws.com",
     "dialect": "postgres"
   }
 }
